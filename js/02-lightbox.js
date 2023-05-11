@@ -24,16 +24,15 @@ function onGalleryClick(event) {
     return;
   }
   event.preventDefault();
-    let bigImageSrc = event.target;
-    console.log(bigImageSrc);
-//   const instance = basicLightbox.create(`
-//     <img src="${bigImageSrc}">
-// `);
-//   instance.show();
+  console.log(event.target);
+  
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
-  /* options */
+    
+//   captionsData: 'test',
+//   captionPosition: 'bottom',
+//   captionDelay: 250
 });
 
 galleryEl.addEventListener('click', onGalleryClick);
