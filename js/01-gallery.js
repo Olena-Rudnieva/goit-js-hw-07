@@ -1,33 +1,15 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-// const galleryEl = document.querySelector('.gallery');
+const galleryEl = document.querySelector('.gallery');
+const itemsMarkup = createGalleryItemMarkup(galleryItems);
 
-// const galleryItem = document.createElement('li');
-// const galleryLink = document.createElement('a');
-// const galleryImg = document.createElement('img');
-// galleryImg.classList.add('gallery__image');
-// galleryLink.append(galleryImg);
-// galleryItem.append(galleryLink);
-// galleryEl.append(galleryItem);
-
-// console.log(galleryEl);
-
-// galleryEl.addEventListener('click', onGalleryElClick);
-
-// function onGalleryElClick(event) {
-//   if (event.target.nodeName !== 'IMG') {
-//     return;
-//   }
-
-//   console.log(event.target);
-// }
-
-console.log(createGalleryItemMarkup(galleryItems));
+galleryEl.insertAdjacentHTML('beforeend', itemsMarkup);
 
 function createGalleryItemMarkup(items) {
-  const markup = items.map(({ preview, original, description }) => {
-    return `
+  return items
+    .map(({ preview, original, description }) => {
+      return `
 <li class="gallery__item">
   <a class="gallery__link" href="${original}">
     <img
@@ -39,8 +21,22 @@ function createGalleryItemMarkup(items) {
   </a>
 </li>
 `;
-  });
-  console.log(markup[0]);
+    })
+    .join('');
 }
+
+function onGalleryClick(event) {
+  if (!event.target.classList.contains('gallery__image')) {
+    return;
+  }
+  event.preventDefault();
+  let bigImageSrc = event.target.dataset.source;
+  const instance = basicLightbox.create(`
+    <img src="${bigImageSrc}">
+`);
+  instance.show();
+}
+
+galleryEl.addEventListener('click', onGalleryClick);
 
 // console.log(galleryItems);
