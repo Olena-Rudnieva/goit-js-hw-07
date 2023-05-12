@@ -30,11 +30,23 @@ function onGalleryClick(event) {
     return;
   }
   event.preventDefault();
+  window.addEventListener('keydown', onEscKeyPress);
   let bigImageSrc = event.target.dataset.source;
   const instance = basicLightbox.create(`
     <img src="${bigImageSrc}">
 `);
   instance.show();
+
+  function onEscKeyPress(key) {
+    if (key.code === 'Escape') {
+      oncloseModal();
+    }
+  }
+
+  function oncloseModal() {
+    window.removeEventListener('keydown', onEscKeyPress);
+    instance.close();
+  }
 }
 
 galleryEl.addEventListener('click', onGalleryClick);
