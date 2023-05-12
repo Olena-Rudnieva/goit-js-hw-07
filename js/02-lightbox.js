@@ -23,16 +23,12 @@ function onGalleryClick(event) {
   if (!event.target.classList.contains('gallery__image')) {
     return;
   }
-  event.preventDefault();
-  console.log(event.target);
-  
+  event.preventDefault();  
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
-    
-//   captionsData: 'test',
-//   captionPosition: 'bottom',
-//   captionDelay: 250
+  captionsData: 'alt',
+  captionDelay: 250,
 });
 
 galleryEl.addEventListener('click', onGalleryClick);
