@@ -19,18 +19,13 @@ function createGalleryItemMarkup(items) {
     .join('');
 }
 
-function onGalleryClick(event) {
-  if (!event.target.classList.contains('gallery__image')) {
-    return;
-  }
-  event.preventDefault();  
-}
+
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
 
-galleryEl.addEventListener('click', onGalleryClick);
+
 
 // console.log(galleryItems);
